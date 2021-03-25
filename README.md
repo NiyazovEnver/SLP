@@ -1,6 +1,6 @@
 # SLP
 Задача №5 
-
+```Lisp
 (defun _reverse (lst &optional lst1)
     (cond
         ((null lst) lst1)
@@ -20,9 +20,9 @@
 )
     
 (print (task '(10 5 4)))
-
+```
 Задача №12
-
+```Lisp
 (defun mrg (lst)
     (cond ((null lst) lst)
           ((equal (car lst) (cadr lst)) (cons (car lst) (mrg (cddr lst))))
@@ -33,9 +33,9 @@
 (print (mrg '(1 1 1 2 2 2 3 3 3)))
 (print (mrg '(a b a b a a b b a)))
 
-
+```
 Зажача №13
-
+```Lisp
 (defun _member (x y)
     (cond
         ((null y) nil)
@@ -55,9 +55,9 @@
 
 (print (double '(a b b a a)))
 (print (double '(123 css sscc css css a a)))
-
+```
 Задача №22
-
+```Lisp
 (defun conv (lst &optional r)
    (cond 
        ((null lst) (car r))
@@ -79,3 +79,4 @@
 
  
 (print (task '(a b c)))
+```
