@@ -66,24 +66,24 @@
     )
 )
 
-(defun my_find (lst n cnt)
+(defun my_find (lst n cnt) ; нахождение элемента
     (cond
         ((equal cnt n) (car lst))
         (t (my_find (cdr lst) n (+ cnt 1)))
         )
     )
 
-(defun both (lst i1 i2)
+(defun both (lst i1 i2) 
     (list (my_find lst i1 1) (my_find lst i2 1))
     )
 
 (defun swap (lst output i1 i2 v1 v2 cnt)
     (cond
-        ((null lst) (rev output ()))
-        ((equal cnt 0) (swap lst output i1 i2 (cadr (both lst i1 i2)) (car (both lst i1 i2)) (+ cnt 1) ) )
-        ((equal cnt i1) (swap (cdr lst) (cons v1 output) i1 i2 v1 v2 (+ cnt 1)))
+        ((null lst) (rev output ())) ; вывод
+        ((equal cnt 0) (swap lst output i1 i2 (cadr (both lst i1 i2)) (car (both lst i1 i2)) (+ cnt 1) ) ) ; инициализация
+        ((equal cnt i1) (swap (cdr lst) (cons v1 output) i1 i2 v1 v2 (+ cnt 1))) ; замена
         ((equal cnt i2) (swap (cdr lst) (cons v2 output) i1 i2 v1 v2 (+ cnt 1)))
-        (t (swap (cdr lst) (cons (car lst) output) i1 i2 v1 v2 (+ cnt 1)))
+        (t (swap (cdr lst) (cons (car lst) output) i1 i2 v1 v2 (+ cnt 1))) 
         )
     )
 
