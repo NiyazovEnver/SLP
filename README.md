@@ -56,6 +56,39 @@
 (print (double '(a b b a a)))
 (print (double '(123 css sscc css css a a)))
 ```
+
+Задача №14
+```Lisp
+(defun rev (lst lst1)
+    (cond 
+        ((Null lst)  lst1)
+        (t (rev (cdr lst) (cons (car lst) lst1)))
+    )
+)
+
+(defun my_find (lst n cnt)
+    (cond
+        ((equal cnt n) (car lst))
+        (t (my_find (cdr lst) n (+ cnt 1)))
+        )
+    )
+
+(defun both (lst i1 i2)
+    (list (my_find lst i1 1) (my_find lst i2 1))
+    )
+
+(defun swap (lst output i1 i2 v1 v2 cnt)
+    (cond
+        ((null lst) (rev output ()))
+        ((equal cnt 0) (swap lst output i1 i2 (cadr (both lst i1 i2)) (car (both lst i1 i2)) (+ cnt 1) ) )
+        ((equal cnt i1) (swap (cdr lst) (cons v1 output) i1 i2 v1 v2 (+ cnt 1)))
+        ((equal cnt i2) (swap (cdr lst) (cons v2 output) i1 i2 v1 v2 (+ cnt 1)))
+        (t (swap (cdr lst) (cons (car lst) output) i1 i2 v1 v2 (+ cnt 1)))
+        )
+    )
+
+(print (swap '(8 7 5 3 2 1 4 6) () 3 5 0 0 0))
+```
 Задача №22
 ```Lisp
 (defun conv (lst &optional r)
