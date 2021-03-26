@@ -33,6 +33,7 @@
 
 (print (mrg '(1 1 1 2 2 2 3 3 3)))
 (print (mrg '(a b a b a a b b a)))
+(print (mrg '((a b) (a b) a b a a b b a)))
 
 
 ;Задача №13
@@ -56,6 +57,8 @@
 
 (print (double '(a b b a a)))
 (print (double '(123 css sscc css css a a)))
+(print (double '(a (b c) 1 1 3 6)))
+
 
 ;Задача №14
 ;Определите функцию,осуществляющую перестановку двух элементов списка с заданными номерами.
@@ -112,5 +115,26 @@
 
  
 (print (task '(a b c)))
+(print (task '(() b c)))
+(print (task '(a (b c) d)))
+
+;Задача №40
+
+(defun _member (x y)
+    (cond
+        ((null y) nil)
+        ((equal x (car y)) x)
+        (t (_member x (cdr y)))
+    )
+)
+
+(defun _set-difference (w v)
+  (cond ((null w) w)
+        ((_member (car w) v) (_set-difference (cdr w) v))
+        ((cons (car w) (_set-difference (cdr w) v)))))
+ 
+(print (_set-difference '(4 5 6 7) '(4 5 6 7)))
+(print (_set-difference '(1 2 3 4 5) '(4 5 6 7)))
+(print (_set-difference nil '(1 2 3)))
 
 
