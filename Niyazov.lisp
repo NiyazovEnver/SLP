@@ -89,20 +89,17 @@
 
 ;Задача №22
 ;Определите функцию,которая обращает список(аbс) и разбивает его на уровни (((с)b)а)
-(defun conv (lst r)
-   (cond 
-       ((null lst) (car r))
-       (t (conv (cdr lst) (list (append r (list (car lst))))))
-   )
+
+(defun F (lst)
+  (cond 
+      ((null (cdr lst)) lst)
+      (t (list (F (cdr lst)) (car lst)))
+  )
 )
 
-(defun task (lst) 
-    (conv (_reverse lst ()) ())
-)
- 
-(print (task '(a b c)))
-(print (task '(() b c)))
-(print (task '(a (b c) d)))
+(print (F '(a b c)))
+(print (F '('(a b c) b c)))
+(print (F '(nil b c)))
 
 ;Задача №37
 ;Определите функцию ПЕРЕСЕЧЕНИЕ, формирующую пересечение двух множеств, т.е. множество из их общих элементов
