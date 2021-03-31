@@ -1,12 +1,21 @@
+(defun _member (a l)
+    (cond
+        ((null l) nil) ; элемент не может принадлежать пустому множеству
+        ((eq a (car l)) t) ; элемент принадлежит множеству, если в нем содержится
+        (t (_member a (cdr l))) 
+    )
+)
 
-;Задача №5 
-;Определите функцию,которая увеличивает элементы исходного списка на единицу
+
 (defun _reverse (lst lst1)
     (cond
         ((null lst) lst1)
         (t (_reverse (cdr lst) (cons (car lst) lst1)))
     )
 )
+
+;Задача №5 
+;Определите функцию,которая увеличивает элементы исходного списка на единицу
 
 (defun increase (x y) 
     (cond 
@@ -38,14 +47,6 @@
 
 ;Задача №13
 
-(defun _member (x y)
-    (cond
-        ((null y) nil)
-        ((equal x (car y)) x)
-        (t (_member x (cdr y)))
-    )
-)
-
 (defun double (w)
     (cond 
         ((null w) nil)
@@ -62,12 +63,6 @@
 
 ;Задача №14
 ;Определите функцию,осуществляющую перестановку двух элементов списка с заданными номерами.
-(defun _reverse (lst lst1)
-    (cond 
-        ((Null lst)  lst1)
-        (t (_reverse (cdr lst) (cons (car lst) lst1)))
-    )
-)
 
 (defun my_find (lst n cnt) ; нахождение элемента
     (cond
@@ -101,32 +96,33 @@
    )
 )
 
-(defun _reverse (lst lst1)
-    (cond
-        ((null lst) lst1)
-        (t (_reverse (cdr lst) (cons (car lst) lst1)))
-    )
-)
- 
 (defun task (lst) 
     (conv (_reverse lst ()) ())
 )
- 
-
  
 (print (task '(a b c)))
 (print (task '(() b c)))
 (print (task '(a (b c) d)))
 
-;Задача №40
+;Задача №37
+;Определите функцию ПЕРЕСЕЧЕНИЕ, формирующую пересечение двух множеств, т.е. множество из их общих элементов
 
-(defun _member (x y)
+
+(defun _intersection (a b)
     (cond
-        ((null y) nil)
-        ((equal x (car y)) x)
-        (t (_member x (cdr y)))
+        ((null a) nil)
+        ((null b) nil)
+        ((_member (car a) b) (cons (car a) (_intersection (cdr a) b)) )
+        (t (_intersection (cdr a) b))
     )
 )
+
+(print (_intersection '(a b c) '(b c d)))
+(print (_intersection '(a ) '( d) ))
+(print (_intersection '(a ) 'nil ))
+
+;Задача №40
+;Определите функцию РАЗНОСТЬ, формирующую разность двух множеств, т.е. удаляющую из первого множества все общие со вторым множеством элементы.
 
 (defun _set-difference (w v)
   (cond ((null w) w)
