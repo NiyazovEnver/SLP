@@ -34,10 +34,13 @@
 ;Определите функцию, заменяющую в исходном списке два подряд идущих одинаковых элемента одним.
 
 (defun mrg (lst)
-    (cond ((null lst) lst)
-          ((equal (car lst) (cadr lst)) (cons (car lst) (mrg (cddr lst))))
-          (t (cons (car lst) (mrg (cdr lst))))
-    )
+    ((lambda (f1)
+        (cond ((null lst) lst)
+          ((equal f1 (cadr lst)) (cons f1 (mrg (cddr lst))))
+          (t (cons f1 (mrg (cdr lst))))
+        ))
+        (car lst)
+     )
 )
 
 (print (mrg '(1 1 1 2 2 2 3 3 3)))
@@ -45,13 +48,20 @@
 (print (mrg '((a b) (a b) a b a a b b a)))
 
 
+
+
 ;Задача №13
+;Определите функцию, удаляющую в исходном списке все повторные вхождеению элементов.
 
 (defun double (w)
-    (cond 
-        ((null w) nil)
-        ((_member (car w) (cdr w)) (double (cdr w)))
-        ((cons (car w) (double (cdr w))))
+    ((lambda (f1 f2)
+        (cond 
+            ((null w) nil)
+            ((_member f1 f2) (double f2))
+            ((cons f1 (double f2)))
+        ))
+        (car w)
+        (cdr w)
     )
 )
 
@@ -91,14 +101,17 @@
 ;Определите функцию,которая обращает список(аbс) и разбивает его на уровни (((с)b)а)
 
 (defun F (lst)
-  (cond 
-      ((null (cdr lst)) lst)
-      (t (list (F (cdr lst)) (car lst)))
-  )
+  ((lambda (f1)
+      (cond 
+          ((null f1) lst)
+          (t (list (F f1) (car lst)))
+      ))
+      (cdr lst)
+    )
 )
 
 (print (F '(a b c)))
-(print (F '('(a b c) b c)))
+(print (F '((a b c) b c)))
 (print (F '(nil b c)))
 
 ;Задача №37
@@ -106,12 +119,16 @@
 
 
 (defun _intersection (a b)
-    (cond
-        ((null a) nil)
-        ((null b) nil)
-        ((_member (car a) b) (cons (car a) (_intersection (cdr a) b)) )
-        (t (_intersection (cdr a) b))
-    )
+    ((lambda (f1 f2)
+        (cond
+            ((null a) nil)
+            ((null b) nil)
+            ((member f1 b) (cons f1 (_intersection f2 b)) )
+            (t (_intersection f2 b))
+        ))
+        (car a)
+        (cdr a)
+     )
 )
 
 (print (_intersection '(a b c) '(b c d)))
@@ -122,10 +139,16 @@
 ;Определите функцию РАЗНОСТЬ, формирующую разность двух множеств, т.е. удаляющую из первого множества все общие со вторым множеством элементы.
 
 (defun _set-difference (w v)
-  (cond ((null w) w)
-        ((_member (car w) v) (_set-difference (cdr w) v))
-        ((cons (car w) (_set-difference (cdr w) v)))))
- 
+   ((lambda (f1 f2)
+      (cond ((null w) w)
+            ((_member f1 v) (_set-difference f2 v))
+            ((cons f1 (_set-difference f2 v)))
+      ))
+      (car w)
+      (cdr w)
+    )
+)
+
 (print (_set-difference '(4 5 6 7) '(4 5 6 7)))
 (print (_set-difference '(1 2 3 4 5) '(4 5 6 7)))
 (print (_set-difference nil '(1 2 3)))
