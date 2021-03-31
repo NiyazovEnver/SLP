@@ -74,28 +74,23 @@
 ;Задача №14
 ;Определите функцию,осуществляющую перестановку двух элементов списка с заданными номерами.
 
-(defun my_find (lst n cnt) ; нахождение элемента
+(defun SWAP-TWO-ELEMENT (L N1 N2)
     (cond
-        ((equal cnt n) (car lst))
-        (t (my_find (cdr lst) n (+ cnt 1)))
+        ((> N1 0) 
+            (cons (car L) (SWAP-TWO-ELEMENT (cdr L) (- N1 1) (- N2 1))))
+        ((> N2 1)
+            ((lambda (result)
+                (cons (car result) (cons (cadr L) (cdr result)))
+             )
+             (SWAP-TWO-ELEMENT (cons (car L) (cddr L)) (- N1 1) (- N2 1))
+            )
         )
+        (T 
+            (cons (cadr L) (cons (car L) (cddr L))))
     )
+)
 
-(defun both (lst i1 i2) 
-    (list (my_find lst i1 1) (my_find lst i2 1))
-    )
-
-(defun swap (lst output i1 i2 v1 v2 cnt)
-    (cond
-        ((null lst) (_reverse output ())) ; вывод
-        ((equal cnt 0) (swap lst output i1 i2 (cadr (both lst i1 i2)) (car (both lst i1 i2)) (+ cnt 1) ) ) ; инициализация
-        ((equal cnt i1) (swap (cdr lst) (cons v1 output) i1 i2 v1 v2 (+ cnt 1))) ; замена
-        ((equal cnt i2) (swap (cdr lst) (cons v2 output) i1 i2 v1 v2 (+ cnt 1)))
-        (t (swap (cdr lst) (cons (car lst) output) i1 i2 v1 v2 (+ cnt 1))) 
-        )
-    )
-
-(print (swap '(8 7 5 3 2 1 4 6) () 3 5 0 0 0))
+(print (SWAP-TWO-ELEMENT '(1 2 3) 1 2))
 
 ;Задача №22
 ;Определите функцию,которая обращает список(аbс) и разбивает его на уровни (((с)b)а)
