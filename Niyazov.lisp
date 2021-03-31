@@ -17,18 +17,19 @@
 ;Задача №5 
 ;Определите функцию,которая увеличивает элементы исходного списка на единицу
 
-(defun increase (x y) 
-    (cond 
-        ((null x) y)
-        (T (increase (cdr x) (cons (+ (car x) 1) y)))
-    )
+(defun increase (w)
+    ((lambda (f1 f2)
+        (cond ((null w) nil)
+            ((atom f1) (cons (+ f1 1) (increase f2)))
+            ((cons (increase f1) (increase f2)))
+        ))
+        (car w)
+        (cdr w)
+     )
 )
 
-(defun task (lst)
-    (_reverse (increase lst ()) ())
-)
-    
-(print (task '(10 5 4)))
+(print (increase '(1 2 3)))
+(print (increase '((1 (2 3)) ((4 (5) 6)) ((7 8) 9))))
 
 ;Задача №12
 ;Определите функцию, заменяющую в исходном списке два подряд идущих одинаковых элемента одним.
