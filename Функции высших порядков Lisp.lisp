@@ -43,3 +43,18 @@
 (print (IF_DEL 'evenp '(1 2 3 4 5 6)))
 (print (IF_DEL 'zerop '(1 0 3 0 5 6)))
 (print (IF_DEL 'evenp '()))
+
+;Задача №8. 
+;Напишите генератор натуральных чисел: 0, 1, 2, 3, 4, 5, ...
+(defun generate_natural (N &optional (cnt 0)) 
+    (cond 
+        ((< N 0) nil)
+        ((= cnt N) (cons N '()))
+        (T (cons cnt (generate_natural N (+ cnt 1))))
+    )
+)
+
+(print "Задача №8. Напишите генератор натуральных чисел: 0, 1, 2, 3, 4, 5, ...")
+(print (generate_natural 10))
+(print (generate_natural 0))
+(print (generate_natural -2))
