@@ -164,6 +164,14 @@
 
 ;Задача №43
 ;Определите функцию, подсчитывающую количество всех вершин данного дерева заданной высоты
+
+;                                      7
+;                                 /          \
+;                           6                     12
+;                       /       \              /      \
+;                     2            -8        nil      nil
+;                  /   \         /     \
+                 nil    nil     nil    nil              
 (defun tree-count (tree lv)
   (cond 
       ((null tree) 0)
@@ -179,5 +187,24 @@
  
 (print (tree-count '(((nil 2 nil) 6 (nil -8 nil)) 7 (nil 12 nil)) 3))
  
+;Задание №48. 
+;Напишите предикат (ИМЕЕТ-СВОЙСТВО символ свойство), который проверяет, обладает ли символ данным свойством.
 
+(defun ИМЕЕТ-СВОЙСТВО (symbol property &optional (propertyList (symbol-plist symbol)))
+    (cond
+       ((NULL propertyList) nil)
+       ((equal (car propertyList) property) t)
+       (t (ИМЕЕТ-СВОЙСТВО symbol property (cddr propertyList)))
+        )
+    )
+
+
+(SETF (GET 'symbol 'property1) nil)
+(SETF (GET 'symbol 'property2) 'value2)
+
+(print "Задание №48. Напишите предикат (ИМЕЕТ-СВОЙСТВО символ свойство), который проверяет, обладает ли символ данным свойством.")
+
+(print (ИМЕЕТ-СВОЙСТВО 'symbol 'property1))
+(print (ИМЕЕТ-СВОЙСТВО 'symbol 'property2))
+(print (ИМЕЕТ-СВОЙСТВО 'symbol 'property3))
 
