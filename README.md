@@ -31,9 +31,10 @@ Racket Chez Scheme
 
 Примеры кода
 Тривиальная программа «hello world» будет выглядеть следующим образом:
-
+```Racket
 #lang racket
 "Hello, World!"
+```
 При её запуске будет выведено:
 
 «Hello, World!»
@@ -41,6 +42,7 @@ Racket Chez Scheme
 
 
 Результат программы, который покажет DrRacket
+```Racket
 #lang racket
 (require 2htdp/image)
 (let sierpinski ([n 8])
@@ -49,9 +51,9 @@ Racket Chez Scheme
     (let ([t (sierpinski (- n 1))])
       (freeze (above t (beside t t))))))
 Данная программа, взятая с сайта Racket, нарисует треугольник Серпинского с глубиной вложенности 8.
-
+```
 Пример использования генератора:
-
+```Racket
 #lang racket
 (require racket/generator)
 (define fib
@@ -60,6 +62,7 @@ Racket Chez Scheme
                  (y 1))
         (yield x)
         (loop y (+ x y)))))
+```
 Используя директиву #lang, можно писать программы на альтернативных диалектах Racket’a. Вот пример факториала на Typed Racket, диалекте со статической типизацией:
 ```Racket
 #lang typed/racket
