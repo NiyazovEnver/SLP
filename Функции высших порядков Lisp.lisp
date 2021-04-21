@@ -59,3 +59,13 @@
 (print (funcall c1))
 (print (funcall c1))
 (print (funcall c1))
+
+;Задача №14
+;Определите функцию, которая возвращает в качестве значения форму своего определения (DEFUN)
+(defun quine ()
+  ((lambda (x) (list x (list 'quote x)))
+   '(lambda (x) (list x (list 'quote x)))))
+
+(print "Определите функцию, которая возвращает в качестве значения форму своего определения (DEFUN)")
+(print (quine))
+
