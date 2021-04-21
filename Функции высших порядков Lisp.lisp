@@ -44,17 +44,18 @@
 (print (IF_DEL 'zerop '(1 0 3 0 5 6)))
 (print (IF_DEL 'evenp '()))
 
-;Задача №8. 
+;Задача №8
 ;Напишите генератор натуральных чисел: 0, 1, 2, 3, 4, 5, ...
-(defun generate_natural (N &optional (cnt 0)) 
-    (cond 
-        ((< N 0) nil)
-        ((= cnt N) (cons N '()))
-        (T (cons cnt (generate_natural N (+ cnt 1))))
+
+(defun make-natural-numbers-counter ()
+    (let ( (x 0) )
+         (lambda () (setq x (+ x 1)))
     )
 )
+ (setq c1 (MAKE-NATURAL-NUMBERS-COUNTER))
 
-(print "Задача №8. Напишите генератор натуральных чисел: 0, 1, 2, 3, 4, 5, ...")
-(print (generate_natural 10))
-(print (generate_natural 0))
-(print (generate_natural -2))
+(print "Напишите генератор натуральных чисел: 0, 1, 2, 3, 4, 5, ...")
+(print (funcall c1))
+(print (funcall c1))
+(print (funcall c1))
+(print (funcall c1))
